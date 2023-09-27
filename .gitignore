@@ -5,3 +5,5 @@
 *$py.class
 *.pyc
 __pycache__/
+
+*.log

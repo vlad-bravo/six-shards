@@ -69,17 +69,15 @@ class Shard:
                     arr_out.append(cube)
         return arr_out
 
+
 class Cube:
     def __init__(self, shards: List[Shard]) -> None:
         self.shards = shards
 
-    def empty(self) -> None:
-        self.cube = [0] * CELLS_IN_CUBE
-
-    def print(self) -> None:
-        logging.info(f'{self.cube[0:3], self.cube[9:12], self.cube[18:21]}')
-        logging.info(f'{self.cube[3:6], self.cube[12:15], self.cube[21:24]}')
-        logging.info(f'{self.cube[6:9], self.cube[15:18], self.cube[24:27]}')
+    def print(self, cube) -> None:
+        logging.info(f'{cube[0:3], cube[9:12], cube[18:21]}')
+        logging.info(f'{cube[3:6], cube[12:15], cube[21:24]}')
+        logging.info(f'{cube[6:9], cube[15:18], cube[24:27]}')
 
     def process(self) -> None:
         start_time = time()
@@ -88,8 +86,8 @@ class Cube:
         for shard in self.shards:
             arr = shard.position(arr)
             print(shard.shard_num, len(arr), time() - start_time)
-        self.cube = arr[0]
-        self.print()
+            logging.info(f'{shard.shard_num} {len(arr)} {time() - start_time}')
+        self.print(arr[0])
 
 
 if __name__ == '__main__':
